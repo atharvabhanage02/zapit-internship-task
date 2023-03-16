@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Sidebar } from "@/components/Sidebar";
 import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { CryptoListing } from "@/components/CryptoListing";
 export default function Home() {
   return (
     <>
@@ -15,6 +16,7 @@ export default function Home() {
         <Navbar />
         <div className="flex gap-8 h-[110vh]">
           <Sidebar />
+          <CryptoListing />
         </div>
         <Footer />
       </main>
