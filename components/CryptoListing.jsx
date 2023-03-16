@@ -1,15 +1,31 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
-import { fetchCryptoList } from "@/store/features/cryptoListingSlice";
+import {
+  fetchCryptoList,
+  searchCrypto,
+} from "@/store/features/cryptoListingSlice";
+import { CryptoTable } from "./CryptoTable";
 
 export const CryptoListing = () => {
+  const [searchInput, setSearchInput] = useState("");
   const dispatch = useDispatch();
   const list = useSelector((state) => state.crypto);
   useEffect(() => {
     dispatch(fetchCryptoList());
-  });
+  }, []);
+
+  const searchHandler = (searchQuery) => {
+    setSearchInput(searchQuery);
+    if (searchQuery !== "") {
+      const newUsers = list.cryptoLists.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery)
+      );
+      dispatch(searchCrypto(newUsers));
+    } else {
+      dispatch(searchCrypto(list.cryptoLists));
+    }
+  };
   return (
     <div className="border border-1 border-black w-full flex items-center flex-col py-4 ">
       <div className=" flex items-center p-1.5 border border-1 border-gray-400 rounded-2xl mb-8">
@@ -17,8 +33,8 @@ export const CryptoListing = () => {
         <input
           type="text"
           className="outline-none border-none pl-1.5"
-          name=""
-          id=""
+          value={searchInput}
+          onChange={(e) => searchHandler(e.target.value)}
           placeholder="Search"
         />
       </div>
@@ -46,39 +62,9 @@ export const CryptoListing = () => {
               </th>
             </tr>
           </thead>
-          {list.searchCryptoList.map((item) => {
-            return (
-              <tbody>
-                <tr class=" border-black ">
-                  <td class="px-6 py-4">{item.market_cap_rank}</td>
-                  <td scope="row" class="px-6 py-4 font-medium ">
-                    {item.name}
-                  </td>
-                  <td class="px-6 py-4">${item.current_price}</td>
-                  <td
-                    className={`px-6 py-4 font-bold flex items-center ${
-                      item.price_change_percentage_24h > 0
-                        ? "text-green-600 "
-                        : "text-red-600 "
-                    } `}
-                  >
-                    <span>
-                      {item.price_change_percentage_24h > 0 ? (
-                        <AiFillCaretUp />
-                      ) : (
-                        <AiFillCaretDown />
-                      )}
-                    </span>
-                    {item.price_change_percentage_24h}
-                  </td>
-                  <td class="px-6 py-4">
-                    {item.market_cap}
-                    {/* {Math.abs(Number(item.market_cap)) / 1.0e9 + "B"} */}
-                  </td>
-                </tr>
-              </tbody>
-            );
-          })}
+          {searchInput.length > 1
+            ? list.searchCryptoList.map((item) => <CryptoTable item={item} />)
+            : list.cryptoLists.map((item) => <CryptoTable item={item} />)}
         </table>
       </div>
     </div>
