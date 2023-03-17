@@ -1,0 +1,17 @@
+export const categories = [
+  "smart_contract_platforms",
+  "stablecoins",
+  "asset_backed_tokens",
+  "cex",
+  "meme",
+  "wallets",
+  "metaverse",
+  "nfts",
+  "nfts",
+  "dex",
+  "privacy_coins",
+  "storage",
+  "cloud_hosting",
+  "governance",
+  "gaming",
+];

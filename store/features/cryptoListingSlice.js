@@ -22,14 +22,10 @@ const cryptoSlice = createSlice({
   initialState,
   reducers: {
     sortLowToHigh: (state, action) => {
-      state.cryptoLists = state.cryptoLists.sort(
-        (a, b) => a.current_price - b.current_price
-      );
+      state.cryptoLists = state.cryptoLists.sort((a, b) => a.rate - b.rate);
     },
     sortHighToLow: (state, action) => {
-      state.cryptoLists = state.cryptoLists.sort(
-        (a, b) => b.current_price - a.current_price
-      );
+      state.cryptoLists = state.cryptoLists.sort((a, b) => b.rate - a.rate);
     },
     searchCrypto: (state, action) => {
       state.searchCryptoList = action.payload;

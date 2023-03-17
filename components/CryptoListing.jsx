@@ -17,7 +17,7 @@ export const CryptoListing = () => {
   }, []);
 
   return (
-    <div className="w-full flex items-center flex-col py-4 sm:items-start h-[110vh]">
+    <div className="w-full flex items-center flex-col py-4 sm:items-start">
       <div className=" flex items-center p-1.5 border border-1 border-gray-400 rounded-2xl mb-8 sm:m-auto sm:mb-2 ">
         <CiSearch className="" />
         <input
@@ -51,12 +51,6 @@ export const CryptoListing = () => {
               </th>
               <th scope="col" class="px-6 py-3 sm:px-3">
                 Price
-              </th>
-              <th scope="col" class="px-6 py-3 sm:px-3">
-                Price Change
-              </th>
-              <th scope="col" class="px-6 py-3 sm:px-4">
-                Market Cap
               </th>
             </tr>
           </thead>
