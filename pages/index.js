@@ -14,7 +14,7 @@ export default function Home() {
       </Head>
       <main>
         <Navbar />
-        <div className="flex gap-8 h-[110vh]">
+        <div className="flex gap-8 sm:flex sm:flex-col">
           <Sidebar />
           <CryptoListing />
         </div>

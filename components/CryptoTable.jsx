@@ -4,13 +4,13 @@ const CryptoTable = ({ item }) => {
   return (
     <tbody>
       <tr class=" border-black ">
-        <td class="px-6 py-4">{item.market_cap_rank}</td>
+        <td class="px-6 py-4 sm:px-2">{item.market_cap_rank}</td>
         <td scope="row" class="px-6 py-4 font-medium ">
           {item.name}: {item.id}
         </td>
-        <td class="px-6 py-4">${item.current_price}</td>
+        <td class="px-6 py-4 sm:px-2">${item.current_price}</td>
         <td
-          className={`px-6 py-4 font-bold flex items-center ${
+          className={`px-6 py-4 sm:px-2 font-bold flex items-center ${
             item.price_change_percentage_24h > 0
               ? "text-green-600 "
               : "text-red-600 "
