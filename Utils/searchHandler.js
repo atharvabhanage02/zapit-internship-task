@@ -7,12 +7,9 @@ const searchHandler = (
 ) => {
   setSearchInput(searchQuery);
   if (searchQuery !== "") {
-    const newUsers = cryptoLists.filter((item) => {
-      return Object.values(item)
-        .join(" ")
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-    });
+    const newUsers = cryptoLists.filter((item) =>
+      item.name.toLowerCase().includes(searchQuery)
+    );
     dispatch(searchCrypto(newUsers));
   } else {
     dispatch(searchCrypto(cryptoLists));
